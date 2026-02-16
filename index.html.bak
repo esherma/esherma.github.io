@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Eli Sherman</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="Eli_files/assets/css/main.css" />
+		<link rel="stylesheet" href="Eli_files/assets/css/academicons.min.css"/>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="Eli_files/images/Headshot_Small.jpg" alt="" /></span>
+					<h1 id="logo"><a href="index.html#">Eli Sherman</a></h1>
+<!-- 					<p>Son, are you an idiot?<br/>
+					No, sir. I'm a dreamer<br/>
+					<i>-Scrubs</i></p> -->
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html#About" class="active">About</a></li>
+						<!-- <li><a href="#Research">Research</a></li> -->
+						<li><a href="index.html#Selected Publications">Publications</a></li>
+						<li><a href="index.html#Teaching">Teaching</a></li>
+						<li><a href="index.html#Miscellaneous">Miscellaneous</a></li>
+						<li><a href="index.html#Contact">Contact</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://scholar.google.com/citations?hl=en&user=qeD16OwAAAAJ" target="_blank" class="ai ai-google-scholar"><span></span></a></li>
+						<li><a href="https://twitter.com/wolverine_sherm" target="_blank" class="icon fa-twitter"><span></span></a></li>
+						<li><a href="https://www.linkedin.com/in/sherman-eli/" target="_blank" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/esherma" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="index.html#Contact" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="About">
+								<div class="container">
+									<header class="major">
+										<h2>About Me</h2>
+									</header>
+									<p>I am a fifth year PhD student in the Johns Hopkins Computer Science Department, advised by <a href="https://www.cs.jhu.edu/faculty/ilya-shpitser-3/" target="_blank">Ilya Shpitser</a>. I work on <b>developing observational causal inference and machine learning methods for resource allocation.</b> I am interested in translational work in health and public policy settings. Presently (Summer 2021), I am interning at IBM Research with Zach Shahn, Yoonyoung Park, and Stacy Hobson.
+
+									<p>I am affiliated with the <a href="https://malonecenter.jhu.edu/" target="_blank">Malone Center for Engineering in Healthcare</a> and the <a href="https://www.minds.jhu.edu/" target="_blank">Mathematical Institute for Data Science (MINDS)</a>. I am a <a href="https://ai.googleblog.com/2020/10/announcing-2020-google-phd-fellows.html" target="_blank">Google PhD Fellow</a>. Previously, I was funded by a <a href="https://www.minds.jhu.edu/people/#tripods-fellows" target="_blank">TRIPODS PhD Fellowship</a>. I earned an MSE in Computer Science from Hopkins in 2019 and I graduated from the University of Michigan in 2017 with a B.S. in Computer Science with Honors.</p>
+
+									<!-- <p>The banner photo is the Dead Sea taken atop Masada, Israel. My avatar photo was graciously taken by Joseph Xu of Michigan Engineering.</p> -->
+								</div>
+							</section>
+
+						<!-- Two -->
+<!-- 							<section id="Research">
+								<div class="container">
+									<h3>Research</h3>
+									<ul class="feature-icons">
+										<li class="fa-users"><a href="social_nets.html">Social Networks</a></li>
+										<li class="fa-stethoscope"><a href="dtr.html">Dynamic Treatment Regimes</a></li>
+										<li class="fa-stethoscope"><a href="lab_test.html">Laboratory Test Prediction</a></li>
+									</ul>
+								</div>
+							</section> -->
+
+						<!-- Three -->
+							<section id="Selected Publications">
+								<div class="container">
+									<h1>Selected Publications</h1>
+									<h4>Computer Science Conference Papers</h4>
+									<p>Eli Sherman, et at. (2021). "Towards Understanding the Role of Gender in Deploying Social Media-Based Mental Health Surveillance Models" 7th Workshop on Computational Linguistics and Clinical Psychology (CLPsych). <br>
+									<a href="https://aclanthology.org/2021.clpsych-1.23/" target="_blank">Paper and Supplement</a></p>
+
+									<p>Eli Sherman, David Arbour, and Ilya Shpitser (2020). "General Identification of Dynamic Treatment Regimes Under Interference" 23rd Annual Conference on Artificial Intelligence and Statistics (AIStats). <br>
+									<a href="https://arxiv.org/abs/2004.01218" target="_blank">Paper and Supplement</a></p>
+
+									<p>Eli Sherman and Ilya Shpitser (2019). "Intervening on Network Ties." Proceedings of the 35th Annual Conference on Uncertainty in Artificial Intelligence (UAI). <br>
+									<a href="Eli_files/assets/papers/UAI_2019_main.pdf" target="_blank">PDF</a> &nbsp;
+								    <a href="Eli_files/assets/papers/UAI_2019_supplement.pdf" target="_blank">Supplement</a></p>
+									
+									<p>Eli Sherman and Ilya Shpitser (2018). "Identification and Estimation of Causal Effects from Dependent Data." Proceedings of the 32nd Annual Conference on Advances in Neural Information Processing Systems (NeurIPS) <i>Spotlight Presentation</i>. <br>
+									<a href="Eli_files/assets/papers/NeurIPS2018.pdf" target="_blank">PDF</a> &nbsp;
+								    <a href="https://www.cs.jhu.edu/~esherma9/Eli_files/assets/papers/NeurIPS2018_Supp.pdf" target="_blank">Supplement</a> &nbsp;
+								    <a href="https://www.facebook.com/nipsfoundation/videos/210102029906862/?t=2869" target="_blank">Talk</a></p>
+									
+									<p>Ilya Shiptser and Eli Sherman (2018). "Identification of personalized effects associated with causal pathways." Proceedings of the 34th Annual Conference on Uncertainty in Artificial Intelligence (UAI) <i>Plenary Presentation</i>. <br>
+									<a href="Eli_files/assets/papers/UAI2018.pdf" target="_blank">PDF</a> &nbsp;
+									<a href="https://www.cs.jhu.edu/~esherma9/Eli_files/assets/papers/Supplementary-Paper198.pdf" target="_blank">Supplement</a> &nbsp;
+									<a href="https://www.youtube.com/watch?v=ZqN8-sbAF0k" target="_blank">Talk</a></p>
+									
+									<p>Eli Sherman, et al. (2017) "Leveraging Clinical Time-Series Data for Prediction: A Cautionary Tale." AMIA Annual Symposium Proceedings <b>Best Student Paper Award Winner KDD Subgroup</b> <i>Oral Presentation</i>. <br>
+									<a href="Eli_files/assets/papers/AMIA2017.pdf" target="_blank">PDF</a> </p>
+
+									<!-- <h4>Workshop Papers</h4>
+									<p>Eli Sherman, David Arbour, and Ilya Shpitser (2019). "Policy Interventions Under Interference." NeurIPS Workshop on Machine Learning and Causal Inference for Improved Decision Making.</p>
+									
+									<p>Eli Sherman and Ilya Shpitser (2019). "Friendship Interventions". Atlantic Causal Inference Conference (ACIC).</p>
+									
+									<p>Eli Sherman and Ilya Shpitser (2018). "Identification and estimation of causal effects from dependent data". 7th UAI Causal Inference Workshop.</p>
+
+									<p>Ilya Shpitser and Eli Sherman (2018). "Identification of path-specific effects". Atlantic Causal Inference Conference (ACIC).</p>
+
+									<p>Eli Sherman, Ilya Shpitser, and Dan Scharfstein (2017). "Inference on time series: A sequential, non-monotone missingness model". NIPS Workshop on Causal Inference and Machine Learning for Intelligent Decision Making.</p> -->
+
+									<h4>Medical Conference Abstracts</h4>
+									<p>Eli Sherman, et al. (2021). "Leveraging Machine Learning to Predict 30-day Hospital Readmission after Cardiac Surgery". Society of Thoracic Surgeons Annual Meeting. </p>
+
+									<p>Lindsey Sloan, et al. (2019). "Multi-time point evaluation of peripheral blood myeloid-derived suppressor cell and lymphocyte populations in patients with newly diagnosed glioblastoma receiving adjuvant therapy". Society of Neuro-Oncology Annual Meeting.</p>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="Teaching">
+								<div class="container">
+									<h3>Teaching</h3>
+									Johns Hopkins University
+									<ul>
+										<li> Spring 2021: Instructor, EN 133 Bootcamp: Python</li>
+										<li> Fall 2019: Teaching Assistant, CS 677 Causal Inference</li>
+										<li> Spring 2018: Teaching Assistant, CS 295 Developing Health IT Applications</li>
+									</ul>
+									University of Michigan
+									<ul>
+										<li> Winter 2017: Instructional Aide EECS 445 Introduction to Machine Learning </li>
+										<li> Winter 2014: Course Tutor <a href="https://eecs183.org/" target="_blank">EECS 183 Elementary Programming</a></li>
+									</ul>
+								</div>
+							</section>
+
+							<section id="Miscellaneous">
+								<div class="container">
+									<h3>Miscellaneous</h3>
+									I am an avid fan (perhaps unhealthily so!) of classical music. I have played cello since I was 8 (violin before that, and a foray into double bass in the middle). See a some recent performances with the Homewood Chamber Seminar below.
+
+									Additionally, I am an occassional hiker, climber, tennis player, and golfer. In undergrad a was a play-by-play announcer and studio host for WCBN Sports, calling games for a variety of University of Michigan varsity sports.
+									<br>
+									<br>
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/z1-Tr2B8nXs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<br>
+									<br>
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/gpPTPPDzDKo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								</div>
+							</section>
+
+						<!-- Five -->
+							<section id="Contact">
+								<div class="container">
+									<h3>Contact</h3>
+									<p>Email: [first initial] + [last name] + [at symbol] + jhu + [dot] + edu</p>
+								</div>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; Eli Sherman. All rights reserved.</li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="Eli_files/assets/js/jquery.min.js"></script>
+			<script src="Eli_files/assets/js/jquery.scrollzer.min.js"></script>
+			<script src="Eli_files/assets/js/jquery.scrolly.min.js"></script>
+			<script src="Eli_files/assets/js/skel.min.js"></script>
+			<script src="Eli_files/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="Eli_files/assets/js/main.js"></script>
+
+	</body>
+</html>
