@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Trading: Paper Replications — Eli Sherman</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        .project-hero-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            max-width: 680px;
+            margin-bottom: 2rem;
+        }
+
+        /* Content blocks */
+        .content-block {
+            padding: 4rem 2rem;
+        }
+
+        .content-block.alt {
+            background: var(--color-surface);
+        }
+
+        .content-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .block-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.6rem;
+        }
+
+        .block-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .block-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 640px;
+        }
+
+        /* Status badges */
+        .status-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: var(--color-bg);
+            color: var(--color-text-secondary);
+        }
+
+        .status-badge.done {
+            border-color: #86efac;
+            color: #15803d;
+            background: #f0fdf4;
+        }
+
+        .status-badge.soon {
+            border-color: #fcd34d;
+            color: #92400e;
+            background: #fffbeb;
+        }
+
+        /* Backtest figure */
+        .backtest-figure {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .backtest-figure img {
+            width: 100%;
+            display: block;
+        }
+
+        .backtest-figure figcaption {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .metric-card {
+            padding: 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background: var(--color-surface);
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1.1;
+        }
+
+        .metric-value.positive {
+            color: #15803d;
+        }
+
+        .metric-value.negative {
+            color: #dc2626;
+        }
+
+        .metric-label {
+            font-size: 0.775rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-top: 0.35rem;
+        }
+
+        .metrics-disclaimer {
+            font-size: 0.825rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Paper card */
+        .paper-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+        }
+
+        .paper-citation {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+        }
+
+        .paper-meta {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .paper-summary {
+            font-size: 0.975rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background: var(--color-bg);
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .step-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        /* Code structure */
+        .code-note {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 640px;
+            margin-bottom: 1rem;
+        }
+
+        .dir-tree {
+            font-family: monospace;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .dir-tree .dim {
+            color: var(--color-border);
+        }
+
+        .dir-tree .ann {
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        /* Strategy section */
+        .strategy-text {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+            max-width: 720px;
+        }
+
+        .formula-block {
+            font-family: monospace;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 10px 10px 0;
+            padding: 1.25rem 1.5rem;
+            line-height: 2.1;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .bands-diagram {
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 0 2rem;
+            background: #fff;
+        }
+
+        @media (max-width: 640px) {
+            .project-hero-title {
+                font-size: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Eli Sherman</a>
+            <div class="nav-links">
+                <a href="../index.html#projects">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="project-hero">
+        <a href="../index.html#projects" class="back-link">← Back to projects</a>
+        <div class="project-hero-label">Finance &bull; Quant &bull; Side Project</div>
+        <h1 class="project-hero-title">Algorithmic Trading:<br>Paper Replications</h1>
+        <p class="project-hero-description">
+            I'm always passively interested in algorithmic trading ideas. I came across this 2024 paper from <a href="https://concretumgroup.com/" target="_blank">Concretum Group</a> claiming an exploitable intraday
+            momentum effect in SPY and other high volume tickers. I aimed to replicate their results and set up for testing in paper (and ideally eventually live money) trading.
+            Project includes a build of the data pipeline, strategy, backtesting, and configuration to do live (paper or money) trading on <a href="https://alpaca.markets/" target="_blank">Alpaca</a>.
+            TBD whether I'll more exploration of parameter optimization or live trading based on paper trade performance.
+        </p>
+        <div class="hero-links">
+            <a href="https://github.com/esherma/algo_trading" class="link-button" target="_blank">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4824172" class="link-button" target="_blank">Source Paper &rarr;</a>
+        </div>
+    </div>
+
+    <!-- Backtest Results -->
+    <div class="content-block">
+        <div class="content-inner">
+            <div class="block-label">Backtest Example</div>
+            <h2 class="block-title">2022–2024 performance</h2>
+            <p class="block-subtitle">
+                Three-year simulation using published paper parameters. $100k starting capital,
+                2022-01-03 through 2024-12-31. Includes commissions ($0.0035/share) and slippage ($0.001/share).
+            </p>
+
+            <figure class="backtest-figure">
+                <img src="../assets/algo-trading/btm_backtest.png" alt="BTM strategy backtest chart, 2022–2024">
+                <figcaption>Portfolio value and daily positions over the backtest period. Gray bands are the volatility-adjusted noise thresholds.</figcaption>
+            </figure>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value positive">+71.7%</div>
+                    <div class="metric-label">Total Return</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value positive">+19.9%</div>
+                    <div class="metric-label">Ann. Return (IRR)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1.39</div>
+                    <div class="metric-label">Sharpe Ratio</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value negative">-9.9%</div>
+                    <div class="metric-label">Max Drawdown</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">~22.7%</div>
+                    <div class="metric-label">SPY Buy &amp; Hold (same period)</div>
+                </div>
+            </div>
+
+            <p class="metrics-disclaimer">
+                Backtested with published paper parameters. Past performance does not predict future results.
+            </p>
+        </div>
+    </div>
+
+    <!-- The Strategy -->
+    <div class="content-block alt">
+        <div class="content-inner">
+            <div class="block-label">The Strategy</div>
+            <h2 class="block-title">Intraday momentum in SPY</h2>
+
+            <p class="strategy-text">
+                The paper identifies a persistent intraday momentum effect in SPY. Returns in the first 30 minutes of
+                trading (9:30&ndash;10:00 ET) are positively correlated with returns in the final 30 minutes
+                (3:30&ndash;4:00 ET). The most plausible mechanism: large institutional orders initiated at the open
+                tend to execute throughout the day, sustaining the initial price direction through the close.
+            </p>
+            <p class="strategy-text">
+                Rather than trading the raw opening return directly, the strategy uses time-of-day volatility bands to
+                separate signal from noise. For each half-hour decision slot &tau;, the algorithm estimates how much SPY
+                typically moves from its open to that time of day, averaged over the prior N trading days. Only when
+                price breaks <em>decisively</em> beyond that range does it enter a position. The same 0.4% move at
+                10:00 AM reads as a strong signal on a quiet day, but as ordinary noise on a volatile one.
+            </p>
+
+            <div class="formula-block">
+                &sigma;(&tau;) &nbsp;&nbsp;= &nbsp;mean over last N days of |Close(&tau;) / Open<sub>9:30</sub> &minus; 1|<br>
+                UB(&tau;) = max(Open<sub>today</sub>, Close<sub>prev</sub>) &times; (1 + vm &times; &sigma;(&tau;))<br>
+                LB(&tau;) &nbsp;= min(Open<sub>today</sub>, Close<sub>prev</sub>) &times; (1 &minus; vm &times; &sigma;(&tau;))
+            </div>
+
+            <!-- Noise bands diagram -->
+            <div class="bands-diagram">
+                <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                    <!-- Zone fills  (plot: x=115 to x=727, y=18 to y=200) -->
+                    <rect x="115" y="18" width="612" height="52" fill="#f0fdf4"/>
+                    <rect x="115" y="70" width="612" height="85" fill="#f8fafc"/>
+                    <rect x="115" y="155" width="612" height="45" fill="#fef2f2"/>
+
+                    <!-- Plot border -->
+                    <rect x="115" y="18" width="612" height="182" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+
+                    <!-- Decision-time tick marks -->
+                    <line x1="163" y1="18" x2="163" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="211" y1="18" x2="211" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="259" y1="18" x2="259" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="307" y1="18" x2="307" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="355" y1="18" x2="355" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="403" y1="18" x2="403" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="451" y1="18" x2="451" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="499" y1="18" x2="499" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="547" y1="18" x2="547" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="595" y1="18" x2="595" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="643" y1="18" x2="643" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="691" y1="18" x2="691" y2="200" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Band lines -->
+                    <line x1="115" y1="70" x2="727" y2="70" stroke="#22c55e" stroke-width="1.5"/>
+                    <line x1="115" y1="155" x2="727" y2="155" stroke="#ef4444" stroke-width="1.5"/>
+
+                    <!-- Open reference line (faint) -->
+                    <line x1="115" y1="112" x2="727" y2="112" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3,5"/>
+
+                    <!-- VWAP (dashed, accent color) -->
+                    <polyline points="115,111 225,110 355,109 451,109 595,110 727,111"
+                              fill="none" stroke="#00B4D8" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+                    <!-- Price path – phase 1: approaching UB (9:30 to 10:30) -->
+                    <polyline points="115,114 163,99 200,78 211,59"
+                              fill="none" stroke="#2C3E50" stroke-width="2.5"
+                              stroke-linejoin="round" stroke-linecap="round"/>
+
+                    <!-- Price path – phase 2: long position, above UB (10:30 to 13:00) -->
+                    <polyline points="211,59 259,51 307,55 355,61 403,65 451,74"
+                              fill="none" stroke="#2C3E50" stroke-width="2.5"
+                              stroke-linejoin="round" stroke-linecap="round"/>
+
+                    <!-- Price path – phase 3: position closed, price continues (13:00 onward) -->
+                    <polyline points="451,74 499,82 547,87 595,84 643,80 691,77 727,74"
+                              fill="none" stroke="#94A3B8" stroke-width="2"
+                              stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5,3"/>
+
+                    <!-- Entry marker (10:30) -->
+                    <circle cx="211" cy="59" r="5" fill="#22c55e" stroke="#fff" stroke-width="2"/>
+                    <line x1="211" y1="51" x2="211" y2="30" stroke="#22c55e" stroke-width="1" stroke-dasharray="2,2"/>
+                    <text x="211" y="24" text-anchor="middle" font-size="10.5" fill="#15803d" font-weight="600" font-family="sans-serif">▲ Long entry (10:30)</text>
+
+                    <!-- Exit marker (13:00) -->
+                    <circle cx="451" cy="74" r="5" fill="#64748B" stroke="#fff" stroke-width="2"/>
+                    <line x1="451" y1="82" x2="451" y2="100" stroke="#64748B" stroke-width="1" stroke-dasharray="2,2"/>
+                    <text x="455" y="110" font-size="10.5" fill="#64748B" font-weight="600" font-family="sans-serif">Exit (13:00)</text>
+
+                    <!-- Band / axis labels (left side) -->
+                    <text x="109" y="70"  text-anchor="end" font-size="10" fill="#15803d" dominant-baseline="middle" font-family="sans-serif">UB</text>
+                    <text x="109" y="112" text-anchor="end" font-size="10" fill="#94A3B8" dominant-baseline="middle" font-family="sans-serif">Open</text>
+                    <text x="109" y="155" text-anchor="end" font-size="10" fill="#dc2626" dominant-baseline="middle" font-family="sans-serif">LB</text>
+
+                    <!-- Zone descriptors -->
+                    <text x="123" y="46"  font-size="10" fill="#15803d" font-family="sans-serif" font-weight="600">Long zone  (price &gt; UB)</text>
+                    <text x="123" y="172" font-size="10" fill="#dc2626" font-family="sans-serif" font-weight="600">Short zone  (price &lt; LB)</text>
+
+                    <!-- VWAP label (right side, with room to breathe) -->
+                    <text x="733" y="110" font-size="10" fill="#00B4D8" dominant-baseline="middle" font-family="sans-serif">VWAP</text>
+
+                    <!-- Time axis labels -->
+                    <text x="115" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">9:30</text>
+                    <text x="163" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">10:00</text>
+                    <text x="211" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">10:30</text>
+                    <text x="307" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">11:00</text>
+                    <text x="451" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">13:00</text>
+                    <text x="691" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">15:30</text>
+                    <text x="727" y="220" text-anchor="middle" font-size="10" fill="#64748B" font-family="sans-serif">15:50</text>
+                </svg>
+            </div>
+
+            <div class="paper-card">
+                <div class="paper-citation">"Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF"</div>
+                <div class="paper-meta">Zarattini, Aziz &amp; Barbon &mdash; SSRN, 2024</div>
+                <p class="paper-summary">
+                    Empirical study of intraday momentum across multiple years of SPY data. The authors document
+                    the first-30-min / last-30-min predictability, construct the volatility-adjusted band filter,
+                    and run walk-forward out-of-sample backtests with transaction costs. Net Sharpe ratio exceeds 1.0
+                    across their test period. This implementation follows their published methodology directly.
+                </p>
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4824172" class="pub-link" target="_blank">Read on SSRN &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="content-block">
+        <div class="content-inner">
+            <div class="block-label">How It Works</div>
+            <h2 class="block-title">Three steps, once a day</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-title">Build the bands each morning</div>
+                    <div class="step-desc">
+                        Before the open, fetch 14 days of SPY minute bars from Alpaca and compute &sigma;(&tau;)
+                        for each half-hour slot. Set UB and LB using today's open and yesterday's close as the
+                        reference anchors. Wider on volatile days, tighter on quiet ones.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-title">Check at each decision time</div>
+                    <div class="step-desc">
+                        At 10:00, 10:30, &hellip;, 15:30 ET, compare SPY's live price and intraday VWAP to the
+                        band for that exact slot. Price above UB &rarr; long (via SPXL, SPUU, or SPY depending on
+                        implied leverage). Price below LB &rarr; short via the inverse ETF. A VWAP trailing stop
+                        exits positions that reverse back into the neutral zone before the next check.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-title">Close flat by 3:50 PM</div>
+                    <div class="step-desc">
+                        All positions go flat by 3:50 PM ET regardless of P&amp;L &mdash; no overnight exposure.
+                        <code>run_live.py</code> handles one full trading day per invocation and exits cleanly.
+                        <code>setup_schedule.sh</code> registers the daily launchd (macOS) or cron (Linux) job.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Structure -->
+    <div class="content-block alt">
+        <div class="content-inner">
+            <div class="block-label">Code</div>
+            <h2 class="block-title">What's in the repo</h2>
+            <p class="code-note">
+                Strategy logic, backtesting, and live execution are kept separate.
+                Alpaca handles both market data and order routing for the live runner.
+            </p>
+
+            <div class="dir-tree">
+                algo_trading/<br>
+                <span class="dim">├─</span> btm/               <span class="ann"># strategy core: signal, bands, sizing, orders, charting</span><br>
+                <span class="dim">├─</span> tests/             <span class="ann"># unit tests for core logic</span><br>
+                <span class="dim">├─</span> run_backtest.py    <span class="ann"># historical simulation CLI</span><br>
+                <span class="dim">├─</span> run_live.py        <span class="ann"># live/paper trading runner (one day per invocation)</span><br>
+                <span class="dim">└─</span> setup_schedule.sh  <span class="ann"># installs daily cron/launchd job</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/esherma/algo_trading" class="link-button" target="_blank">View source on GitHub &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Eli Sherman. Built with curiosity and care.</p>
+            <p class="footer-note">Inspired by the intersection of research and practice</p>
+        </div>
+    </footer>
+</body>
+</html>
