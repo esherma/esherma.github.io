@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geographic Analysis of Potential Automation Exposure — Eli Sherman</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        .project-hero-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            max-width: 680px;
+            margin-bottom: 2rem;
+        }
+
+        /* Content blocks */
+        .content-block {
+            padding: 4rem 2rem;
+        }
+
+        .content-block.alt {
+            background: var(--color-surface);
+        }
+
+        .content-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .block-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.6rem;
+        }
+
+        .block-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .block-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 640px;
+        }
+
+        .prose p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            margin-bottom: 1.25rem;
+            max-width: 720px;
+        }
+
+        .figure {
+            margin: 2rem 0 0;
+        }
+
+        .figure img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .figure figcaption {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background: var(--color-bg);
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .data-table th {
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .data-table td.num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .caveats {
+            padding-left: 1.5rem;
+        }
+
+        .caveats li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.6rem;
+            max-width: 720px;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .project-hero-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Eli Sherman</a>
+            <div class="nav-links">
+                <a href="../index.html#projects">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="project-hero">
+        <a href="../index.html#projects" class="back-link">← Back to projects</a>
+        <div class="project-hero-label">AI &bull; Labor Markets &bull; Geospatial</div>
+        <h1 class="project-hero-title">Geographic Analysis of<br>Potential Automation Exposure</h1>
+        <p class="project-hero-description">
+            A county and census tract-based atlas studying potential for labor automation by job type.
+        </p>
+        <div class="hero-links">
+            <a href="https://esherma.github.io/societal_impacts/" class="link-button primary" target="_blank">Explore the map</a>
+            <a href="https://github.com/esherma/societal_impacts" class="link-button" target="_blank">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                GitHub
+            </a>
+        </div>
+    </div>
+
+    <!-- Background -->
+    <div class="content-block alt">
+        <div class="content-inner prose">
+            <h2 class="block-title">Background</h2>
+
+            <p>
+                As AI capabilities have advanced over the past few years, public discourse has
+                increasingly sought to understand the impact AI is having or will have on jobs. Is
+                employment down? Is there a K-shaped labor market, separated by age? Which workers are
+                feeling the effects most?
+            </p>
+
+            <p>
+                Typically, these questions are posed at an economy-wide level. If disruption is going to
+                be differentiated by worker type, however, that could have implications for how those
+                effects are experienced at the <em>local</em> level. Akin to prior disruptions, like the
+                off-shoring of labor in a company town, a disproportionate share of workers in a
+                particular locality or state being disrupted could shock tax bases and have profound
+                effects on local communities.
+            </p>
+
+            <p>
+                Inspired by the <a href="https://opportunityatlas.org/" target="_blank">Opportunity Atlas</a>,
+                which has been praised for highlighting the geographic aspects of economic effects, I
+                sought to visualize the potential for these locally-relevant labor market effects.
+            </p>
+        </div>
+    </div>
+
+    <!-- Data -->
+    <div class="content-block">
+        <div class="content-inner prose">
+            <div class="block-label">Data &amp; method</div>
+            <h2 class="block-title">What goes into each score</h2>
+
+            <p>
+                The AI Exposure Atlas attempts to capture the potential for labor market disruption on a
+                per-county level. For each county, I calculated a score that represents the level of
+                potential disruption &ndash; roughly a measure of how many of the <em>tasks</em> required
+                by the <em>jobs</em> that people in that county do <strong>are already automatable</strong>
+                by AI. This does not necessarily mean those tasks <em>have</em> been automated for every
+                job; rather the measure is &ldquo;automatability&rdquo; as defined by the capabilities of
+                today's AI systems.
+            </p>
+
+            <p>
+                This analysis covers both &ldquo;AI disruption,&rdquo; covering white collar-oriented tasks
+                automatable by digital-only AI systems, and &ldquo;Robotics disruption,&rdquo; covering
+                physical world work where today's robotic systems (increasingly powered by frontier,
+                general-purpose AI models) can take on the task.
+            </p>
+
+            <p>More details below 👇.</p>
+
+            <p>
+                <strong>Occupation exposure.</strong> Both scores start from Anthropic's Economic Index.
+                Its AI measure rates each occupation by how much of its work shows up in real Claude usage.
+                A separate September 2026 release rates each occupation by how much of its physical work
+                today's robots can already do. I chose these sources for two reasons. First, they rest on
+                observed use and demonstrated capability, rather than expert guesses or academic (often
+                contrived) benchmarks about what might be automatable someday. Second, both come from the
+                same framework, so the two scores are comparable.
+            </p>
+
+            <p>
+                <strong>Local workforce.</strong> The Census Bureau's American Community Survey
+                (2020&ndash;24) counts how many residents of each county and census tract work in each of
+                25 occupation groups. To my knowledge, it is the only public source with this depth of
+                geographic detail.
+            </p>
+
+            <p>
+                <strong>Combining them.</strong> Each locality's score is a shift-share
+                (<a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/28465/Breuer_JFR_2022.pdf" target="_blank">Bartik</a>)
+                index. In plain terms, it is the average exposure of the jobs local residents hold,
+                <strong>weighted by how many residents hold each job</strong>. A county full of software
+                developers scores high on AI. A county full of machine operators scores high on robots.
+                Both indices use the same workforce weights, so any difference between them comes from the
+                occupations, not the data. The atlas covers 3,144 counties and roughly 83,000 census tracts.
+            </p>
+
+            <p>
+                <strong>Reading the scores.</strong> Both indices are scaled so that
+                <strong>100 = average exposure of US workers</strong>. A county with an index score of 130
+                has a job mix 30% more exposed than the national average, while a county with a score of
+                70 is 30% less exposed than the average.
+            </p>
+
+            <p>
+                The AI score also has an absolute reading. Loosely, Anthropic's occupation score is the
+                share of a job's workday spent on tasks AI can already do, based on real Claude work
+                usage. On that reading, the average US worker's job is roughly 10% AI-automatable. As an
+                example, Arlington County, Virginia is the most exposed large county with an index score
+                of 147. This suggests jobs in Arlington are <strong>about 15% automatable</strong>
+                (10% &times; 1.47).
+            </p>
+
+            <p>
+                Note that the robotics score has no &ldquo;already automated&rdquo; percentage reading.
+            </p>
+        </div>
+    </div>
+
+    <!-- Findings -->
+    <div class="content-block alt">
+        <div class="content-inner">
+            <div class="block-label">Findings</div>
+            <h2 class="block-title">Two types of automation &rarr; two maps</h2>
+            <p class="block-subtitle">
+                Where AI exposure is high, robot exposure tends to be low, and vice-versa. Almost no one
+                lives somewhere that ranks high on both.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">&minus;0.86</div>
+                    <div class="stat-desc">Correlation between AI and robot exposure across 3,144 counties</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">0.05%</div>
+                    <div class="stat-desc">Share of US workers in counties in the top third on both</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">72% vs. 6%</div>
+                    <div class="stat-desc">Share of US workers in AI-heavy vs. robot-heavy counties</div>
+                </div>
+            </div>
+
+            <figure class="figure">
+                <img src="../assets/automation-atlas/ai_x_robot.png" alt="Bivariate map of US counties colored by AI exposure and robot exposure. Teal counties (AI-exposed) cluster in metros; pink counties (robot-exposed) cover much of the rural South, Midwest and interior West." loading="lazy">
+                <figcaption>
+                    Counties colored by national thirds of AI exposure (teal) and robot exposure (pink).
+                    Dark blue, high on both, is nearly absent.
+                </figcaption>
+            </figure>
+
+            <div class="prose" style="margin-top: 2.5rem;">
+                <p>
+                    <strong>The two maps are roughly mirror images.</strong> At &minus;0.86 across
+                    counties, there is a strong <em>anti-</em>correlation between places with high AI
+                    exposure and robotics exposure.
+                </p>
+
+                <p>
+                    To make sure this pattern reflects real differences between places, and is not a
+                    side effect of how the scores are built, I ran a simple test. I shuffled the robot
+                    scores at random among the 25 occupation groups, so that each group got another
+                    group's score, and rebuilt every county's robot index. With shuffled scores, the
+                    correlation between AI and robot exposure is close to zero. So the strong negative
+                    correlation comes from which jobs AI and robots can actually do, not from the method.
+                </p>
+
+                <p>
+                    <strong>Robots cover more land; AI covers more people.</strong> By separating counties
+                    into the top third, middle third, and bottom third of exposure on each measure, we see
+                    that the robot-heavy, AI-light group covers 793 counties but only 6% of US workers. The
+                    AI-heavy, robot-light group, on the other hand, has 820 counties and 72% of workers.
+                    Shaded by county, robots look like the bigger story. Counted by people, AI is. This
+                    aligns with the conception of the US economy as being heavy on knowledge work.
+                </p>
+
+                <p>
+                    <strong>Relationship to income.</strong> We can also rank census tracts by median
+                    household income. AI exposure rises steadily, from 82 in the poorest tracts to 121 in
+                    the richest. Robot exposure falls just as steadily, from 129 to 70. Education shows the
+                    same split. The share of adults with a bachelor's degree correlates +0.76 with AI
+                    exposure and &minus;0.86 with robot exposure.
+                </p>
+
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Tract income fifth</th><th>Median household income</th><th>AI exposure (US avg = 100)</th><th>Robot exposure (US avg = 100)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Poorest</td><td class="num">$44k</td><td class="num">82</td><td class="num">129</td></tr>
+                            <tr><td>2nd</td><td class="num">$62k</td><td class="num">87</td><td class="num">119</td></tr>
+                            <tr><td>3rd</td><td class="num">$77k</td><td class="num">94</td><td class="num">108</td></tr>
+                            <tr><td>4th</td><td class="num">$98k</td><td class="num">104</td><td class="num">93</td></tr>
+                            <tr><td>Richest</td><td class="num">$140k</td><td class="num">121</td><td class="num">70</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>
+                    <strong>Where.</strong> Among large counties, AI exposure peaks in Arlington (147) and
+                    Fairfax, Virginia; Washington, DC; San Francisco; Santa Clara; and fast-growing suburbs
+                    like Collin County, Texas. Robot exposure peaks in California's Central Valley (Merced at
+                    138, plus Tulare, Stanislaus, and Kern); Yakima, Washington; and logistics hubs like
+                    Clayton County, Georgia.
+                </p>
+
+                <p>
+                    Two job groups do most of the work on the robot side. Factory work is the biggest
+                    driver nationally. Production jobs make up 11% of the workforce in robot-heavy counties
+                    and 4% in AI-heavy ones. Farming explains the peaks above. Farming, fishing, and
+                    forestry has the highest robot score of any job group, and it accounts for 8&ndash;11% of
+                    workers in Merced, Tulare, and Yakima. Across all robot-heavy counties, though, farm
+                    jobs are only 2.5% of workers (0.3% in AI-heavy ones), so nationally farming matters
+                    less than factory work.
+                </p>
+
+                <p>
+                    <strong>Why this matters.</strong> &ldquo;Automation risk&rdquo; is not one problem.
+                    The places exposed to AI and the places exposed to robots differ in industry, income,
+                    and education. A single combined index would average the two together and miss
+                    subtleties that could inform <em>how</em> our governments should respond to imminent
+                    disruption.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitations -->
+    <div class="content-block">
+        <div class="content-inner">
+            <h2 class="block-title">Limitations</h2>
+            <ul class="caveats">
+                <li>Exposure is not job loss. AI scores reflect observed usage of AI systems (specifically Claude). Robot scores reflect systems already deployed or demonstrated. The two measure different stages of adoption.</li>
+                <li>Occupations are grouped into 25 Census categories, which sharpens the contrast. At the level of individual occupations, the AI&ndash;robot correlation is only &minus;0.39, and some office and sales jobs are exposed to both. Further, lumping all occupations into 25 categories may be too coarse to get a good view. For instance, some jobs in a category might be entirely automatable long before others because of differences in task composition or other structural factors (e.g. licensing regimes in law or medicine).</li>
+                <li>Small counties are noisy. Where a county has only a handful of tracts, survey error swamps the differences between them.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Next -->
+    <div class="content-block alt">
+        <div class="content-inner prose">
+            <h2 class="block-title">Future explorations</h2>
+
+            <p>
+                <strong>In progress: a detailed-occupation index.</strong> The biggest limitation above is
+                the use of 25 broad occupation groups. I'm now working on a version with about 525 detailed
+                occupations from the Census Bureau's microdata (PUMS). This should give a more granular
+                view of exposure.
+            </p>
+
+            <p><strong>Under consideration.</strong></p>
+            <ul class="caveats">
+                <li>One idea is to check the robot index against historical data on where industrial robots were actually installed, mirroring prior studies of localized robotics adoption.</li>
+                <li>Another idea is to repeat this analysis for other countries where similar data is available.</li>
+            </ul>
+
+            <div class="project-links">
+                <a href="https://esherma.github.io/societal_impacts/" class="link-button" target="_blank">Explore the interactive map &rarr;</a>
+                <a href="https://github.com/esherma/societal_impacts" class="link-button" target="_blank">View source on GitHub &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI disclosure -->
+    <div class="content-block">
+        <div class="content-inner">
+            <p class="ai-disclosure" style="font-size:0.875rem; line-height:1.6; color:var(--color-text-secondary); max-width:720px; margin:0;">
+                <strong>AI disclosure.</strong> Claude assisted with data extraction, analysis, visuals,
+                and drafting this write-up. I set strategic direction, reviewed, and edited the outputs.
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Eli Sherman. Built with curiosity and care.</p>
+            <p class="footer-note">Inspired by the intersection of research and practice</p>
+        </div>
+    </footer>
+</body>
+</html>
