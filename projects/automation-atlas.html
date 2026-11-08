@@ -236,10 +236,96 @@
         </div>
     </div>
 
-    <!-- Map -->
+    <!-- Background -->
     <div class="content-block alt">
+        <div class="content-inner prose">
+            <div class="block-label">Background</div>
+            <h2 class="block-title">Two kinds of automation arriving at once</h2>
+
+            <p>
+                For most of the last half-century, automation meant machines on factory floors. Industrial
+                robots took over welding, painting and assembly, and economists who studied them found the
+                effects were real and local: commuting zones that adopted more robots saw lower employment
+                and wages, while the rest of the country barely noticed.
+            </p>
+
+            <p>
+                Two things have changed. First, large language models can now do a meaningful share of the
+                tasks in office and professional work: writing, coding, analysis, customer support. These are
+                jobs that earlier waves of automation mostly left alone. Second, the same advances in AI are
+                making robots better at perceiving and handling the physical world, which could extend
+                machine labor well beyond the assembly line into warehouses, farms, kitchens and job sites.
+            </p>
+
+            <p>
+                Public discussion often lumps both together as &ldquo;AI taking jobs.&rdquo; But the two
+                technologies act on very different kinds of work, and so, potentially, on very different
+                kinds of places and people. This project asks whether that is true, and where.
+            </p>
+        </div>
+    </div>
+
+    <!-- Why a map -->
+    <div class="content-block">
+        <div class="content-inner prose">
+            <div class="block-label">Why a map</div>
+            <h2 class="block-title">Labor shocks land on places, not on averages</h2>
+
+            <p>
+                National statistics can say what share of US jobs is exposed to a technology, but they hide
+                where those jobs are. That matters because past economic shocks, from factory automation to
+                import competition, did their damage locally. A town built around one kind of work has fewer
+                nearby jobs to absorb displaced workers, and its tax base, schools and services feel the
+                loss too.
+            </p>
+
+            <p>
+                A map shows which communities are concentrated in exposed work, whether exposure follows
+                lines of income and education, and whether AI and robots threaten the same places or
+                different ones. That last question decides whether one policy response could serve both, or
+                whether they need separate ones. Mapping down to census tracts, not just counties, also shows
+                how much exposure varies between neighborhoods in the same city.
+            </p>
+        </div>
+    </div>
+
+    <!-- Data -->
+    <div class="content-block alt">
+        <div class="content-inner prose">
+            <div class="block-label">Data &amp; method</div>
+            <h2 class="block-title">What goes into each score</h2>
+
+            <p>
+                <strong>Occupation exposure.</strong> Both scores start from Anthropic's Economic Index.
+                Its AI measure rates occupations by how much of their work shows up in real Claude usage. A
+                separate September 2026 release rates occupations by how far today's robots can already do
+                their physical tasks. I chose these because they are based on observed use and demonstrated
+                capability rather than on expert guesses about what might be automatable someday, and
+                because both come from the same framework, which makes them comparable.
+            </p>
+
+            <p>
+                <strong>Local workforce.</strong> The Census Bureau's American Community Survey (2020&ndash;24)
+                reports how many residents work in each of 25 occupation groups, for every county and census
+                tract. It is the only public source with that level of geographic detail, which is what makes
+                a neighborhood-level map possible.
+            </p>
+
+            <p>
+                <strong>Combining them.</strong> Each place's score is a shift-share (Bartik) index: the
+                average exposure of its workers' occupations, weighted by how many residents work in each.
+                A county full of software developers scores high on AI; one full of machine operators scores
+                high on robots. Both indices use identical workforce weights, so any difference between them
+                comes from the occupations, not the data. The result covers 3,222 counties and roughly 84,000
+                census tracts.
+            </p>
+        </div>
+    </div>
+
+    <!-- Findings -->
+    <div class="content-block">
         <div class="content-inner">
-            <div class="block-label">The Finding</div>
+            <div class="block-label">Findings</div>
             <h2 class="block-title">Two maps of automation, not one</h2>
             <p class="block-subtitle">
                 Where AI exposure is high, robot exposure is low, and the reverse. Almost no one
@@ -268,82 +354,67 @@
                     Dark blue, high on both, is nearly absent.
                 </figcaption>
             </figure>
-        </div>
-    </div>
 
-    <!-- Write-up -->
-    <div class="content-block">
-        <div class="content-inner prose">
-            <div class="block-label">Write-up</div>
-            <h2 class="block-title">What the data shows</h2>
+            <div class="prose" style="margin-top: 2.5rem;">
+                <p>
+                    <strong>The maps are mirror images.</strong> A correlation runs from &minus;1 to +1. At
+                    &minus;0.86 across counties, a place that ranks high on AI exposure almost always ranks low on
+                    robot exposure. The figure is &minus;0.85 across roughly 84,000 census tracts, so the pattern
+                    holds at the neighborhood level too. Randomly reassigning robot scores across occupation groups
+                    gives a correlation near zero, so the result is not built into the method.
+                </p>
 
-            <p>
-                <strong>How it is measured.</strong> Each index is a shift-share (Bartik) score. Anthropic's
-                Economic Index rates occupations by how much their tasks show up in real Claude usage, and,
-                in a separate September 2026 release, by how far today's robots can already do their physical
-                tasks. I weight those occupation scores by each county's and census tract's workforce mix
-                from the Census Bureau's American Community Survey (2020&ndash;24). The two indices use the
-                same workforce data, so they are directly comparable.
-            </p>
+                <p>
+                    <strong>Robots cover more land; AI covers more people.</strong> Splitting counties into
+                    thirds on each measure, the robot-heavy, AI-light corner holds 815 counties but only 6% of
+                    US workers. The AI-heavy, robot-light corner holds 839 counties and 72% of workers. Shaded by
+                    county, robots look like the bigger story. Counted by people, AI is.
+                </p>
 
-            <p>
-                <strong>The maps are mirror images.</strong> A correlation runs from &minus;1 to +1. At
-                &minus;0.86 across counties, a place that ranks high on AI exposure almost always ranks low on
-                robot exposure. The figure is &minus;0.85 across roughly 84,000 census tracts, so the pattern
-                holds at the neighborhood level too. Randomly reassigning robot scores across occupation groups
-                gives a correlation near zero, so the result is not built into the method.
-            </p>
+                <p>
+                    <strong>It is also an income map.</strong> Ranking census tracts by median household income,
+                    AI exposure rises steadily from the poorest fifth to the richest. Robot exposure falls just as
+                    steadily. The share of adults with a bachelor's degree correlates +0.76 with AI exposure and
+                    &minus;0.86 with robot exposure.
+                </p>
 
-            <p>
-                <strong>Robots cover more land; AI covers more people.</strong> Splitting counties into
-                thirds on each measure, the robot-heavy, AI-light corner holds 815 counties but only 6% of
-                US workers. The AI-heavy, robot-light corner holds 839 counties and 72% of workers. Shaded by
-                county, robots look like the bigger story. Counted by people, AI is.
-            </p>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Tract income fifth</th><th>Median household income</th><th>AI exposure</th><th>Robot exposure</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Poorest</td><td class="num">$43k</td><td class="num">0.084</td><td class="num">0.505</td></tr>
+                            <tr><td>2nd</td><td class="num">$61k</td><td class="num">0.089</td><td class="num">0.468</td></tr>
+                            <tr><td>3rd</td><td class="num">$77k</td><td class="num">0.096</td><td class="num">0.426</td></tr>
+                            <tr><td>4th</td><td class="num">$98k</td><td class="num">0.106</td><td class="num">0.369</td></tr>
+                            <tr><td>Richest</td><td class="num">$140k</td><td class="num">0.123</td><td class="num">0.276</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <p>
-                <strong>It is also an income map.</strong> Ranking census tracts by median household income,
-                AI exposure rises steadily from the poorest fifth to the richest. Robot exposure falls just as
-                steadily. The share of adults with a bachelor's degree correlates +0.76 with AI exposure and
-                &minus;0.86 with robot exposure.
-            </p>
+                <p>
+                    <strong>Where.</strong> Among large counties, AI exposure peaks in Arlington and Fairfax,
+                    Virginia, Washington DC, San Francisco, Santa Clara, and fast-growing suburbs like Collin
+                    County, Texas. Robot exposure peaks in California's Central Valley (Merced, Tulare, Stanislaus,
+                    Kern), Yakima, Washington, and logistics hubs like Clayton County, Georgia. The largest single
+                    driver is factory work: production jobs are 11% of the workforce in robot-heavy counties and
+                    4% in AI-heavy ones.
+                </p>
 
-            <div class="table-scroll">
-                <table class="data-table">
-                    <thead>
-                        <tr><th>Tract income fifth</th><th>Median household income</th><th>AI exposure</th><th>Robot exposure</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Poorest</td><td class="num">$43k</td><td class="num">0.084</td><td class="num">0.505</td></tr>
-                        <tr><td>2nd</td><td class="num">$61k</td><td class="num">0.089</td><td class="num">0.468</td></tr>
-                        <tr><td>3rd</td><td class="num">$77k</td><td class="num">0.096</td><td class="num">0.426</td></tr>
-                        <tr><td>4th</td><td class="num">$98k</td><td class="num">0.106</td><td class="num">0.369</td></tr>
-                        <tr><td>Richest</td><td class="num">$140k</td><td class="num">0.123</td><td class="num">0.276</td></tr>
-                    </tbody>
-                </table>
+                <p>
+                    <strong>The county is too coarse.</strong> More than half of the variation in AI exposure
+                    (58%), and more of the variation in robot exposure (69%), sits between neighborhoods within
+                    the same county, after removing survey noise. In the largest metros it is three-quarters or
+                    more.
+                </p>
+
+                <p>
+                    <strong>Why it matters.</strong> &ldquo;Automation risk&rdquo; is not one problem. The places
+                    exposed to AI and the places exposed to robots differ in industry, income and education. A
+                    single combined index would average the two together and describe neither.
+                </p>
             </div>
-
-            <p>
-                <strong>Where.</strong> Among large counties, AI exposure peaks in Arlington and Fairfax,
-                Virginia, Washington DC, San Francisco, Santa Clara, and fast-growing suburbs like Collin
-                County, Texas. Robot exposure peaks in California's Central Valley (Merced, Tulare, Stanislaus,
-                Kern), Yakima, Washington, and logistics hubs like Clayton County, Georgia. The largest single
-                driver is factory work: production jobs are 11% of the workforce in robot-heavy counties and
-                4% in AI-heavy ones.
-            </p>
-
-            <p>
-                <strong>The county is too coarse.</strong> More than half of the variation in AI exposure
-                (58%), and more of the variation in robot exposure (69%), sits between neighborhoods within
-                the same county, after removing survey noise. In the largest metros it is three-quarters or
-                more.
-            </p>
-
-            <p>
-                <strong>Why it matters.</strong> &ldquo;Automation risk&rdquo; is not one problem. The places
-                exposed to AI and the places exposed to robots differ in industry, income and education. A
-                single combined index would average the two together and describe neither.
-            </p>
         </div>
     </div>
 
@@ -357,11 +428,45 @@
                 <li>Occupations are grouped into 25 Census categories, which sharpens the contrast. At the level of individual occupations the AI&ndash;robot correlation is &minus;0.39, and some office and sales jobs are exposed to both.</li>
                 <li>Small counties are noisy. Survey error swamps within-county differences where there are only a handful of tracts.</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Next -->
+    <div class="content-block">
+        <div class="content-inner prose">
+            <div class="block-label">What's next</div>
+            <h2 class="block-title">Future explorations</h2>
+
+            <p>
+                <strong>In progress: a detailed-occupation index.</strong> The biggest limitation above is
+                the 25 broad occupation groups. Using the Census Bureau's microdata (PUMS), I'm building a
+                version with about 525 detailed occupations. That will show whether the mirror-image pattern
+                survives once jobs that are exposed to both AI and robots are no longer averaged into the
+                same group.
+            </p>
+
+            <p>
+                <strong>Under consideration.</strong> One idea is to check the robot index against
+                historical data on where industrial robots were actually installed, the data used in earlier
+                studies of robots and local labor markets. If they line up, that is good evidence the index
+                measures something real. Another is to repeat the analysis for the UK or Canada, to see
+                whether the split between AI places and robot places is an American pattern or a general one.
+            </p>
 
             <div class="project-links">
                 <a href="https://esherma.github.io/societal_impacts/" class="link-button" target="_blank">Explore the interactive map &rarr;</a>
                 <a href="https://github.com/esherma/societal_impacts" class="link-button" target="_blank">View source on GitHub &rarr;</a>
             </div>
+        </div>
+    </div>
+
+    <!-- AI disclosure -->
+    <div class="content-block alt">
+        <div class="content-inner">
+            <p class="ai-disclosure" style="font-size:0.875rem; line-height:1.6; color:var(--color-text-secondary); max-width:720px; margin:0;">
+                <strong>AI disclosure.</strong> Claude, an AI model made by Anthropic, assisted with data
+                extraction, analysis, visuals, and drafting this write-up. I edited and reviewed all of it.
+            </p>
         </div>
     </div>
 
