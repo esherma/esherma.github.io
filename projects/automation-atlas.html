@@ -317,7 +317,9 @@
                 A county full of software developers scores high on AI; one full of machine operators scores
                 high on robots. Both indices use identical workforce weights, so any difference between them
                 comes from the occupations, not the data. The result covers 3,222 counties and roughly 84,000
-                census tracts.
+                census tracts. To make the numbers easy to read, both indices are scaled so that
+                <strong>100 = the average US worker</strong>: a county at 130 has a job mix 30% more
+                exposed than the national average, and one at 70 is 30% less exposed.
             </p>
         </div>
     </div>
@@ -373,30 +375,30 @@
 
                 <p>
                     <strong>It is also an income map.</strong> Ranking census tracts by median household income,
-                    AI exposure rises steadily from the poorest fifth to the richest. Robot exposure falls just as
-                    steadily. The share of adults with a bachelor's degree correlates +0.76 with AI exposure and
+                    AI exposure rises steadily from 82 in the poorest fifth to 121 in the richest. Robot exposure
+                    falls just as steadily, from 128 to 70. The share of adults with a bachelor's degree correlates +0.76 with AI exposure and
                     &minus;0.86 with robot exposure.
                 </p>
 
                 <div class="table-scroll">
                     <table class="data-table">
                         <thead>
-                            <tr><th>Tract income fifth</th><th>Median household income</th><th>AI exposure</th><th>Robot exposure</th></tr>
+                            <tr><th>Tract income fifth</th><th>Median household income</th><th>AI exposure (US avg = 100)</th><th>Robot exposure (US avg = 100)</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Poorest</td><td class="num">$43k</td><td class="num">0.084</td><td class="num">0.505</td></tr>
-                            <tr><td>2nd</td><td class="num">$61k</td><td class="num">0.089</td><td class="num">0.468</td></tr>
-                            <tr><td>3rd</td><td class="num">$77k</td><td class="num">0.096</td><td class="num">0.426</td></tr>
-                            <tr><td>4th</td><td class="num">$98k</td><td class="num">0.106</td><td class="num">0.369</td></tr>
-                            <tr><td>Richest</td><td class="num">$140k</td><td class="num">0.123</td><td class="num">0.276</td></tr>
+                            <tr><td>Poorest</td><td class="num">$43k</td><td class="num">82</td><td class="num">128</td></tr>
+                            <tr><td>2nd</td><td class="num">$61k</td><td class="num">87</td><td class="num">119</td></tr>
+                            <tr><td>3rd</td><td class="num">$77k</td><td class="num">94</td><td class="num">108</td></tr>
+                            <tr><td>4th</td><td class="num">$98k</td><td class="num">104</td><td class="num">94</td></tr>
+                            <tr><td>Richest</td><td class="num">$140k</td><td class="num">121</td><td class="num">70</td></tr>
                         </tbody>
                     </table>
                 </div>
 
                 <p>
-                    <strong>Where.</strong> Among large counties, AI exposure peaks in Arlington and Fairfax,
+                    <strong>Where.</strong> Among large counties, AI exposure peaks in Arlington (147) and Fairfax,
                     Virginia, Washington DC, San Francisco, Santa Clara, and fast-growing suburbs like Collin
-                    County, Texas. Robot exposure peaks in California's Central Valley (Merced, Tulare, Stanislaus,
+                    County, Texas. Robot exposure peaks in California's Central Valley (Merced at 138, Tulare, Stanislaus,
                     Kern), Yakima, Washington, and logistics hubs like Clayton County, Georgia. The largest single
                     driver is factory work: production jobs are 11% of the workforce in robot-heavy counties and
                     4% in AI-heavy ones.
